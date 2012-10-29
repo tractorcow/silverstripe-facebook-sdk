@@ -1,5 +1,3 @@
 <?php
 
-if(FacebookAPIExtension::$auto_load) {
-    FacebookAPIExtension::load();
-}
+define('FB_API_DIR', basename(dirname(__FILE__)));
