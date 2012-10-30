@@ -24,6 +24,8 @@ This module provides an extremely simple wrapper for the facebook PHP SDK module
    will attempt to create this automatically if omitted.
  * Configure the appID and secret key through either your _config.php, or YAML 
    files (see _config/FacebookAPI.yml).
+ * Configure your application extended permissions (through YAML only currently).
+   See FacebookAPI
 
 ## Notes
 

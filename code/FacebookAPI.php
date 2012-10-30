@@ -11,6 +11,26 @@
  */
 class FacebookAPI {
 	
+	protected static $instance = null;
+	
+	/**
+	 * @return Facebook Facebook API instance
+	 */
+	public static function get() {
+		if(self::$instance) return self::$instance;
+	
+		// Check application is configured
+		$settings = SiteConfig::current_site_config();
+		if(empty($settings->FacebookApplicationID)) return null;
+		
+		// Construct
+		return self::$instance = new Facebook(array(
+			'appId'  => $settings->FacebookApplicationID,
+			'secret' => $settings->FacebookApplicationSecret,
+			'cookie' => true
+		));
+	}
+	
 	/**
 	 * Retrieves the configured field, or "SiteConfig" if this should be
 	 * managed through the siteconfig instead of yaml configuration
@@ -44,6 +64,14 @@ class FacebookAPI {
 	 */
 	public static function set_secret($value) {
 		self::set_config('secret', $value);
+	}
+	
+	public static function set_permissions($value) {
+		self::set_config('permissions', $value);
+	}
+	
+	public static function get_permissions() {
+		return self::get_config('permissions');
 	}
 	
 }

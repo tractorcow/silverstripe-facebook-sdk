@@ -1,3 +1,4 @@
 FacebookAPI:
   appID: SiteConfig
   secret: SiteConfig
+  permissions: ''

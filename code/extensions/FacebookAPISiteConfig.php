@@ -11,16 +11,6 @@
  */
 class FacebookAPISiteConfig extends DataExtension {
 	
-	/**
-	 * Retrieves the facebook API instance 
-	 */
-	public function Facebook() {
-		return new Facebook(array(
-			'appId'  => $this->owner->FacebookApplicationID,
-			'secret' => $this->owner->FacebookApplicationSecret
-		));
-	}
-	
 	public static function get_extra_config($class, $extensionClass, $args) {
 		
         $db = array();
