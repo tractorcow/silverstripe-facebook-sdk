@@ -30,17 +30,33 @@ class FacebookAPIExtension extends Extension {
 			xfbml  : true  // parse XFBML
 		});");
 
-		// session initialisation
-		if (!($user = $facebook->getUser())) {
-			// Redirect to login
-			$loginUrl = $facebook->getLoginUrl(
-				array('scope' => FacebookAPI::get_permissions())
-			);
-			echo "<script type='text/javascript'>top.location.href = '$loginUrl';</script>";
-			exit;
-		}
+		$this->checkFacebookPermissions();
 		
 		$this->owner->extend('onAfterInitFacebook', $facebook);
+	}
+	
+	/**
+	 * Determine if the user is properly authorised, and uses javascript to redirect
+	 * the user if not
+	 * @return boolean Flag indicating whether the user is properly authenticated 
+	 */
+	public function checkFacebookPermissions() {
+		// session initialisation
+		if (!($user = FacebookAPI::get()->getUser())) {
+			// Redirect to login
+			$loginUrl = $this->getFacebookLoginURL();
+			Requirements::customScript("top.location.href = '$loginUrl';", 'FacebookLogin');
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	public function getFacebookLoginURL() {
+		$facebook = FacebookAPI::get();
+		return $facebook->getLoginUrl(
+			array('scope' => FacebookAPI::get_permissions())
+		);
 	}
 
 }
