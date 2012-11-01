@@ -28,7 +28,8 @@ class FacebookAPIExtension extends Extension {
 			status : true, // check login status
 			cookie : true, // enable cookies to allow the server to access the session
 			xfbml  : true  // parse XFBML
-		});");
+		});
+		FB.Canvas.setAutoGrow(); //Resizes the iframe to fit content");
 
 		$this->checkFacebookPermissions();
 		
