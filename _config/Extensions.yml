@@ -1,0 +1,6 @@
+Page_Controller:
+  extensions:
+    0: 'FacebookAPIExtension'
+SiteConfig:
+  extensions:
+    0: 'FacebookAPISiteConfig'
