@@ -1,0 +1,5 @@
+FacebookAPI:
+  appID: SiteConfig
+  secret: SiteConfig
+  permissions: ''
+  requires_login: true # Requires the user to be logged in with the above permissions in order to view this application
