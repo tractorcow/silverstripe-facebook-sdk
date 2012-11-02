@@ -2,6 +2,9 @@
 
 This module provides an extremely simple wrapper for the facebook PHP SDK module from <https://github.com/facebook/facebook-php-sdk>
 
+Warning! This module's API is under considerable development at the moment, and things are changing regularly.
+If you would like to use this in a serious application please check back once we have a stable release.
+
 ## Credits and Authors
 
  * Damian Mooyman - <https://github.com/tractorcow/silverstripe-facebook-sdk>

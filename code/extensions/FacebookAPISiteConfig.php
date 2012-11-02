@@ -43,7 +43,7 @@ class FacebookAPISiteConfig extends DataExtension {
         if (FacebookAPI::get_config('secret') == 'SiteConfig') {
 			$fields->addFieldToTab(
 				'Root.Facebook',
-				new TextField('FacebookApplicationSecret')
+				new TextField('FacebookApplicationSecret', 'Facebook Application Secret', null, 255)
 			);
 		}
     }
