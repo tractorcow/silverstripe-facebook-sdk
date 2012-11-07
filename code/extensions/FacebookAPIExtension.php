@@ -51,28 +51,23 @@ class FacebookAPIExtension extends Extension {
 	
 	/**
 	 * Determine if the user is properly authorised, and uses javascript to redirect
-	 * the user if not
+	 * the user if not. If all requested permissions have been denied then the client
+	 * code should be prepared to handle a manual process for applying for the
+	 * missing permissions (e.g. present a link requesting full permissions).
 	 * @param string|array $permissions List permissions required in this login
 	 * @param string $redirectURL URL to redirect user to after permissions are approved
-	 * @param boolean $redirectClient Flag indicating whether the user should be 
-	 * redirected via client script. If false, the user will be redirected via 
-	 * HTTP headers instead.
-	 * 
-	 * This should normally be true if the current page contains opengraph tags that need
-	 * to be visible to facebook's crawler, but should be false if this function is
-	 * only called in direct response to a user action (such as form post).
-	 * 
-	 * Using a server redirect will block display of these tags, while a client redirect
-	 * will expose these tags correctly, while still redirecting users.
-	 * 
-	 * It is preferrable to use server redirects in all other cases, as client redirects
-	 * will not work with javascript disabled, and permissions should be only requested
-	 * when a user directly acts on an application with inadequate permissions.
+	 * param boolean $useClientRedirect Flag indicating whether the user should be 
+	 * redirected via http headers or javascript. If true, the user will be redirected via 
+	 * a client script. If false the user will be redirected via a Location HTTP
+	 * header. This should be left true if the application sits within 
+	 * an frame, as redirecting the user to a permissions dialog within an iframe
+	 * will cause a blank page (as facebook doesn't allow this, even if it's their
+	 * own iframe). The use of javascript to redirect the user allows frame popping.
 	 * @param boolean $ignoreDenied Force these permissions to be requested, even if they
 	 * have been previously denied
 	 * @return boolean Flag indicating whether the user is properly authenticated
 	 */
-	public function requestFacebookPermissions($permissions, $redirectURL = null, $redirectClient = false, $ignoreDenied = false) {
+	public function requestFacebookPermissions($permissions, $redirectURL = null, $useClientRedirect = true, $ignoreDenied = false) {
 
 		// Check if any permissions are missing
 		$missingPermissions = $this->owner->determineUngrantedFacebookPermissions($permissions);
@@ -97,7 +92,7 @@ class FacebookAPIExtension extends Extension {
 
 		// Redirect to login
 		$loginURL = $this->owner->getFacebookLoginURL(implode(',', $requestingPermissions), $redirectURL);
-		if($redirectClient) {
+		if($useClientRedirect) {
 			$this->owner->redirectClient($loginURL);
 		} else {
 			$this->owner->redirect($loginURL);
