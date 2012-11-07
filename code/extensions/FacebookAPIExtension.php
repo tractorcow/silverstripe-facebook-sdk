@@ -75,7 +75,7 @@ class FacebookAPIExtension extends Extension {
 	public function requestFacebookPermissions($permissions, $redirectURL = null, $redirectClient = false, $ignoreDenied = false) {
 
 		// Check if any permissions are missing
-		$missingPermissions = $this->owner->determineUngrantedPermissions($permissions);
+		$missingPermissions = $this->owner->determineUngrantedFacebookPermissions($permissions);
 		if (empty($missingPermissions)) return true;
 
 		// Determine positions that this user is allowed to request still.
@@ -246,7 +246,7 @@ class FacebookAPIExtension extends Extension {
 
 		// Merge this list with existing permissions
 		$denied = $this->owner->getDeniedFacebookPermissions();
-		$denied = array_mergy($denied, $permissions);
+		$denied = array_merge($denied, $permissions);
 
 		// Save back
 		$this->owner->setDeniedFacebookPermissions($denied);
