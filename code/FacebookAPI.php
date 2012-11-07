@@ -69,39 +69,4 @@ class FacebookAPI {
 	public static function set_secret($value) {
 		self::set_config('secret', $value);
 	}
-	
-	/**
-	 * Sets the list of facebook permissions this app requires from the user
-	 * as a comma separated string
-	 * @param string $value
-	 */
-	public static function set_permissions($value) {
-		self::set_config('permissions', $value);
-	}
-	
-	/**
-	 * Retrieves a list of facebook permissions this app requires from the user
-	 * as a comma separated string
-	 * @return string
-	 */
-	public static function get_permissions() {
-		return self::get_config('permissions');
-	}
-	
-	/**
-	 * Determines if this app requires a logged in facebook user
-	 * @return boolean 
-	 */
-	public static function get_requires_login() {
-		return self::get_config('requires_login');
-	}
-	
-	/**
-	 * Set whether this app requires a the user to be logged in
-	 * @param boolean $value
-	 */
-	public static function set_requires_login($value) {
-		self::set_config('requires_login', $value);
-	}
-	
 }
