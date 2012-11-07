@@ -279,7 +279,7 @@ class FacebookAPIExtension extends Extension {
 	 * with the most updated version from the server
 	 * @return array List of approved permissions, or empty array if none are approved
 	 */
-	protected function updateGrantedFacebookPermissions() {
+	public function updateGrantedFacebookPermissions() {
 		// Check user is logged in
 		$user = FacebookAPI::get()->getUser();
 		if (empty($user))
