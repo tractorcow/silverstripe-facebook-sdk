@@ -1,5 +1,5 @@
 {
-    "name": "tractorcow/silverstripe-facebook-sdk",
+    "name": "tractorcow/facebook-sdk",
     "description": "Simple Silverstripe wrapper for the facebook PHP SDK",
     "type": "silverstripe-module",
     "keywords": ["silverstripe", "facebook"],
