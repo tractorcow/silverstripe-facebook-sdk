@@ -11,6 +11,7 @@
     ],
     "require": {
 	"silverstripe/framework": "3.*",
-	"composer/installers": "*"
+	"composer/installers": "*",
+        "facebook/php-sdk": "3.2.1"
     }
 }
