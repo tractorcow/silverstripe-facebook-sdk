@@ -10,8 +10,8 @@
         }
     ],
     "require": {
-	"silverstripe/framework": "3.*",
-	"composer/installers": "*",
+		"silverstripe/framework": "3.*",
+		"composer/installers": "*",
         "facebook/php-sdk": "dev-master"
     }
 }
