@@ -16,7 +16,7 @@ class FacebookAPIExtension extends Extension {
 	 */
 	public function onAfterInit() {
 		Requirements::javascript(THIRDPARTY_DIR . '/jquery/jquery.min.js');
-		Requirements::javascript('//connect.facebook.net/en_US/all.js');
+		Requirements::javascript('//connect.facebook.net/en_US/all.js#xfbml=1');
 	}
 
 	/**
