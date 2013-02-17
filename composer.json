@@ -1,5 +1,5 @@
 {
-    "name": "tractorcow/facebook-sdk",
+    "name": "tractorcow/silverstripe-facebook-sdk",
     "description": "Simple Silverstripe wrapper for the facebook PHP SDK",
     "type": "silverstripe-module",
     "keywords": ["silverstripe", "facebook"],
@@ -9,9 +9,15 @@
             "email": "damian.mooyman@gmail.com"
         }
     ],
+    "support": {
+        "issues": "http://github.com/tractorcow/silverstripe-facebook-sdk/issues"
+    },
     "require": {
-		"silverstripe/framework": "3.*",
-		"composer/installers": "*",
+        "silverstripe/framework": "3.*",
+        "composer/installers": "*",
         "facebook/php-sdk": "dev-master"
+    },
+    "extra": {
+        "installer-name": "facebook-sdk"
     }
 }
