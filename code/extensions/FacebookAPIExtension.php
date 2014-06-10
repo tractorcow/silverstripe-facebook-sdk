@@ -169,7 +169,8 @@ class FacebookAPIExtension extends Extension {
 
 	public function clearDeniedFacebookPermissions($permissions = null) {
 		// Null case, nothing to clear
-		if (empty($_SESSION['FacebookAPIPermissionsDenied'])) return;
+		$FacebookAPIPermissionsDenied = Session::get('FacebookAPIPermissionsDenied');
+		if (empty($FacebookAPIPermissionsDenied)) return;
 
 		// Check permissions requested for clearing
 		if($permissions === null) {
@@ -177,7 +178,7 @@ class FacebookAPIExtension extends Extension {
 		} else {
 			$permissions = $this->parsePermissions($permissions);
 			// Remove requested permissions from denied list
-			$denied = array_diff($_SESSION['FacebookAPIPermissionsDenied'], $permissions);
+			$denied = array_diff($FacebookAPIPermissionsDenied, $permissions);
 		}
 		$this->owner->setDeniedFacebookPermissions($denied);
 	}
@@ -190,14 +191,15 @@ class FacebookAPIExtension extends Extension {
 	public function getDeniedFacebookPermissions() {
 		
 		// Null case, no denied items
-		if (empty($_SESSION['FacebookAPIPermissionsDenied'])) return array();
+		$FacebookAPIPermissionsDenied = Session::get('FacebookAPIPermissionsDenied');
+		if (empty($FacebookAPIPermissionsDenied)) return array();
 
 		// Remove any recently granted permissions from denied list
 		$granted = $this->owner->getGrantedFacebookPermissions();
 		$this->owner->clearDeniedFacebookPermissions($granted);
 		
 		// Remaining denied permissions
-		return $_SESSION['FacebookAPIPermissionsDenied'];
+		return $FacebookAPIPermissionsDenied;
 	}
 
 	/**
@@ -228,7 +230,7 @@ class FacebookAPIExtension extends Extension {
 	 * @param string|array $permissions 
 	 */
 	public function setDeniedFacebookPermissions($permissions) {
-		$_SESSION['FacebookAPIPermissionsDenied'] = $this->parsePermissions($permissions);
+		Session::set('FacebookAPIPermissionsDenied',$this->parsePermissions($permissions));
 	}
 
 	/**
